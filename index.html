@@ -195,3 +195,32 @@
             updateDashboard();
             showJobs();
         }
+
+        function updateDashboard() {
+            document.getElementById("totalJobs").innerText = jobs.length;
+            document.getElementById("interviewJobs").innerText = jobs.filter(j => j.status === "interview").length;
+            document.getElementById("rejectedJobs").innerText = jobs.filter(j => j.status === "rejected").length;
+        }
+
+        document.querySelectorAll(".tabBtn").forEach(button => {
+            button.addEventListener("click", function() {
+                document.querySelectorAll(".tabBtn").forEach(btn => {
+                    btn.classList.remove("bg-blue-600", "text-white");
+                    btn.classList.add("bg-gray-200");
+                });
+
+                this.classList.add("bg-blue-600", "text-white");
+                this.classList.remove("bg-gray-200");
+
+                activeTab = this.dataset.tab;
+                showJobs();
+            });
+        });
+
+        updateDashboard();
+        showJobs();
+    </script>
+
+</body>
+
+</html>
