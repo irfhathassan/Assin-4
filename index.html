@@ -175,3 +175,23 @@
                 `;
             });
         }
+
+        function markInterview(id) {
+            const job = jobs.find(j => j.id === id);
+            job.status = job.status === "interview" ? "all" : "interview";
+            updateDashboard();
+            showJobs();
+        }
+
+        function markRejected(id) {
+            const job = jobs.find(j => j.id === id);
+            job.status = job.status === "rejected" ? "all" : "rejected";
+            updateDashboard();
+            showJobs();
+        }
+
+        function removeJob(id) {
+            jobs = jobs.filter(job => job.id !== id);
+            updateDashboard();
+            showJobs();
+        }
